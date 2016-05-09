@@ -6,7 +6,6 @@ private:
 	SolverBoard* m_boardGraph;
 	TrieNode* m_trieRoot;
 
-
 public:
 	std::vector<std::string> m_foundWords;
 

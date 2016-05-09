@@ -1,9 +1,5 @@
 #include "stdafx.h"
 
-//TODO: Make Find Word work correctly with QU, but rest of impl should use chars
-
-static const int THREAD_COUNT = 26;
-
 TrieNode::TrieNode(char initChar) {
     m_char = initChar;
 	memset(m_children, 0, sizeof(TrieNode*) * 26);
@@ -13,29 +9,13 @@ bool isLowerAlphabet(char c) {
 	return (c <= 122 && c >= 97);
 }
 
-bool TrieNode::FindWord(std::string word) {
-	char firstChar = word.at(0);
-	if (word.size() == 1) {
-		return this->m_eow;
-	}
-	else {
-		word = word.substr(1);
-		TrieNode* nextNode = this->GetChildAt(firstChar);
-		if (nextNode != NULL) {
-			return nextNode->FindWord(word);
-		}
-		else {
-			return false;
-		}
-	}
-}
-
 void TrieNode::GenerateTrie(std::string filepath) {
 	std::string line;
 	std::ifstream dictionary;
 
 	dictionary.open(filepath);
 	while (getline(dictionary, line)) {
+		//Protection from any words that contain character that are not ASCII between 97 and 122
 		if (!std::all_of(line.begin(), line.end(), isLowerAlphabet) || line.size() == 0) {
 			continue;
 		}
@@ -57,8 +37,8 @@ void TrieNode::AddWord(std::string word) {
 
 		this->m_children[letter - 'a'] = childNode;
 
+		//If last char, set the next node to End of Word, else keep travelling down trie
 		if (word.size() == 1) {
-			//Last Character to create, so update accordingly
 			childNode->SetEoW();
 		}
 		else {

@@ -13,7 +13,7 @@ private:
 public:
 	TrieNode() : TrieNode('\0') { m_str = ""; };
 
-	char GetCharacter() { return m_char; };
+	TrieNode* GetChildAt(int index) { return m_children[index]; };
 	std::string GetStr() { return m_str; };
 
 	bool IsEoW() { return m_eow; };
@@ -22,8 +22,5 @@ public:
 	bool IsFound() { return m_found; };
 	void SetFound() { m_found = true; };
 
-    bool FindWord(std::string word);
 	void GenerateTrie(std::string filepath);
-
-	TrieNode* GetChildAt(int index) { return m_children[index]; };
 };

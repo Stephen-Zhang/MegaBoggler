@@ -17,9 +17,7 @@
 #include <sstream>
 #include <fstream>
 #include <cstdio>
-#include <chrono>
-#include <thread>
-#include <queue>
+#include <vector>
 #include <algorithm>
 
 #include "trie.h"
