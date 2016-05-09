@@ -37,7 +37,7 @@
   </PostinstrumentEvent>
   <Binaries>
     <ProjBinary>
-      <Path>Release\Boggle.exe</Path>
+      <Path>Debug\Boggle.exe</Path>
       <ArgumentTimestamp>05/02/2016 18:05:50</ArgumentTimestamp>
       <Instrument>true</Instrument>
       <Sample>true</Sample>
@@ -49,7 +49,7 @@
       <LaunchProject>true</LaunchProject>
       <OverrideProjectSettings>false</OverrideProjectSettings>
       <LaunchMethod>Executable</LaunchMethod>
-      <ExecutablePath>Release\Boggle.exe</ExecutablePath>
+      <ExecutablePath>Debug\Boggle.exe</ExecutablePath>
       <StartupDirectory>Boggle\</StartupDirectory>
       <Arguments>
       </Arguments>
@@ -68,17 +68,6 @@
       <ProjName>Boggle</ProjName>
     </ProjBinary>
   </Binaries>
-  <Reports>
-    <Report>
-      <Path>Boggle160502(3).vsp</Path>
-    </Report>
-    <Report>
-      <Path>Boggle160502(4).vsp</Path>
-    </Report>
-    <Report>
-      <Path>Boggle160502(5).vsp</Path>
-    </Report>
-  </Reports>
   <Launches>
     <ProjBinary>
       <Path>:PB:{40108C76-EC99-476D-9A5A-07E9685387D4}|Boggle\Boggle.vcxproj</Path>

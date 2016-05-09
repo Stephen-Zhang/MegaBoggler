@@ -67,11 +67,6 @@
       <ProjName>Boggle</ProjName>
     </ProjBinary>
   </Binaries>
-  <Reports>
-    <Report>
-      <Path>Boggle160502(3).vsp</Path>
-    </Report>
-  </Reports>
   <Launches>
     <ProjBinary>
       <Path>:PB:{40108C76-EC99-476D-9A5A-07E9685387D4}|Boggle\Boggle.vcxproj</Path>
