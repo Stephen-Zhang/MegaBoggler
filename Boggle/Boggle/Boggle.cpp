@@ -47,9 +47,9 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	std::cout << "\n";
 
-	for (uint32_t i = 0; i < solver->m_foundWords.size(); i++) {
-		std::cout << *(solver->m_foundWords.at(i)) << '\n';
-	}
+	//for (uint32_t i = 0; i < solver->m_foundWords.size(); i++) {
+	//	std::cout << *(solver->m_foundWords.at(i)) << '\n';
+	//}
 
 	//std::getchar();
 }

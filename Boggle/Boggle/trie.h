@@ -25,5 +25,5 @@ public:
     bool FindWord(std::string word);
 	void GenerateTrie(std::string filepath);
 
-	TrieNode* GetChildAt(int index) { return m_children[index - 'a']; };
+	TrieNode* GetChildAt(int index) { return m_children[index]; };
 };

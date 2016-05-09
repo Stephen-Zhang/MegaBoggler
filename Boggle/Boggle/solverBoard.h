@@ -13,7 +13,7 @@ public:
 	static SolverBoard* GenerateBoard(std::string filepath);
 	int* getNeighborsChar(int index);
 
-	char getCharAt(int location) { return m_new_board.at(location); };
-	bool hasBeenVisited(int index) { return m_new_visitedNodes.at(index); };
+	char getCharAt(int location) { return m_new_board[location]; };
+	bool hasBeenVisited(int index) { return m_new_visitedNodes[index]; };
 	void setVisited(int index) { m_new_visitedNodes[index] = true; };
 };

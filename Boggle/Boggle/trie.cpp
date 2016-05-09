@@ -16,7 +16,7 @@ bool isLowerAlphabet(char c) {
 bool TrieNode::FindWord(std::string word) {
 	char firstChar = word.at(0);
 	if (word.size() == 1) {
-		return this->IsEoW();
+		return this->m_eow;
 	}
 	else {
 		word = word.substr(1);
@@ -47,7 +47,7 @@ void TrieNode::GenerateTrie(std::string filepath) {
 void TrieNode::AddWord(std::string word) {
 	TrieNode* childNode;
 	char letter = word.at(0);
-	childNode = this->GetChildAt(letter);
+	childNode = this->GetChildAt(letter - 'a');
 	if (childNode != NULL && word.size() > 1) {
 		childNode->AddWord(word.substr(1));
 	}

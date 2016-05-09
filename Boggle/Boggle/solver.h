@@ -1,7 +1,7 @@
 class BoggleSolver {
 private:
-	std::queue<int> m_board_stack;
-	std::queue<TrieNode*> m_trie_stack;
+	std::vector<int> m_board_stack;
+	std::vector<TrieNode*> m_trie_stack;
 
 	SolverBoard* m_boardGraph;
 	TrieNode* m_trieRoot;

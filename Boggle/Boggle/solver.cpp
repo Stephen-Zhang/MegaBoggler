@@ -6,43 +6,49 @@ BoggleSolver::BoggleSolver(TrieNode* root, SolverBoard* board) {
 
 	char first_node_new = board->getCharAt(0);
 	
-	m_board_stack.push(0);
-	m_trie_stack.push(m_trieRoot->GetChildAt(first_node_new));
+	m_board_stack.push_back(0);
+	m_trie_stack.push_back(m_trieRoot->GetChildAt(first_node_new));
 }
 
 void BoggleSolver::solve() {
 	while (m_board_stack.size() > 0) {
-		int currBoardNode = m_board_stack.front();
-		TrieNode* currentTrieNode = m_trie_stack.front();
+		int currBoardNode = m_board_stack.back();
+		TrieNode* currentTrieNode = m_trie_stack.back();
 
-		m_board_stack.pop();
-		m_trie_stack.pop();
+		m_board_stack.pop_back();
+		m_trie_stack.pop_back();
 
-		if (currentTrieNode->IsEoW()) {
-			if (!currentTrieNode->IsFound()) {
-				currentTrieNode->SetFound();
-				m_foundWords.push_back(&(currentTrieNode->GetStr()));
-			}
-		}
+
 
 		int* neighbors = m_boardGraph->getNeighborsChar(currBoardNode);
 		for (int i = 0; i < 8; i++) {
 			int index = *(neighbors + i);
+
+			if (index == -1) {
+				continue;
+			}
+
 			char letter = m_boardGraph->getCharAt(index);
+			TrieNode* nextNodeInTrie = currentTrieNode->GetChildAt(letter);
+
+			if (nextNodeInTrie == nullptr) {
+				continue;
+			}
+
 			if (!m_boardGraph->hasBeenVisited(index)) {
-				TrieNode* childRoot = m_trieRoot->GetChildAt(m_boardGraph->getCharAt(index));
-				if (childRoot != nullptr) {
-					m_board_stack.push(index);
-					m_trie_stack.push(childRoot);
-				}
+				m_board_stack.push_back(index);
+				m_trie_stack.push_back(nextNodeInTrie);
 				m_boardGraph->setVisited(index);
 			}
 
-			TrieNode* nextNodeInTrie = currentTrieNode->GetChildAt(m_boardGraph->getCharAt(index));
-			if (nextNodeInTrie != nullptr) {
-				m_board_stack.push(index);
-				m_trie_stack.push(nextNodeInTrie);
+			if (nextNodeInTrie->IsEoW()) {
+				if (!currentTrieNode->IsFound()) {
+					currentTrieNode->SetFound();
+					m_foundWords.push_back(&(currentTrieNode->GetStr()));
+				}
 			}
+			m_board_stack.push_back(index);
+			m_trie_stack.push_back(nextNodeInTrie);
 		}
 	}
 }
