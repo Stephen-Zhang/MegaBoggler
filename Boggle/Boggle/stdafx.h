@@ -20,6 +20,7 @@
 #include <chrono>
 #include <thread>
 #include <queue>
+#include <algorithm>
 
 #include "trie.h"
 #include "solverBoard.h"

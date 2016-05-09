@@ -8,7 +8,7 @@ private:
 
 
 public:
-	std::vector<std::string*> m_foundWords;
+	std::vector<std::string> m_foundWords;
 
 	BoggleSolver(TrieNode* root, SolverBoard* board);
 

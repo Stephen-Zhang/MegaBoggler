@@ -23,32 +23,31 @@ void BoggleSolver::solve() {
 		int* neighbors = m_boardGraph->getNeighborsChar(currBoardNode);
 		for (int i = 0; i < 8; i++) {
 			int index = *(neighbors + i);
-
 			if (index == -1) {
 				continue;
 			}
-
 			char letter = m_boardGraph->getCharAt(index);
-			TrieNode* nextNodeInTrie = currentTrieNode->GetChildAt(letter);
-
-			if (nextNodeInTrie == nullptr) {
-				continue;
-			}
 
 			if (!m_boardGraph->hasBeenVisited(index)) {
-				m_board_stack.push_back(index);
-				m_trie_stack.push_back(nextNodeInTrie);
+				TrieNode* childRoot = m_trieRoot->GetChildAt(letter);
+				if (childRoot != nullptr) {
+					m_board_stack.push_back(index);
+					m_trie_stack.push_back(childRoot);
+				}
 				m_boardGraph->setVisited(index);
 			}
 
-			if (nextNodeInTrie->IsEoW()) {
-				if (!currentTrieNode->IsFound()) {
-					currentTrieNode->SetFound();
-					m_foundWords.push_back(&(currentTrieNode->GetStr()));
+			TrieNode* nextNodeInTrie = currentTrieNode->GetChildAt(letter);
+			if (nextNodeInTrie != nullptr) {
+				if (nextNodeInTrie->IsEoW()) {
+					if (!nextNodeInTrie->IsFound()) {
+						nextNodeInTrie->SetFound();
+						m_foundWords.push_back(nextNodeInTrie->GetStr());
+					}
 				}
+				m_board_stack.push_back(index);
+				m_trie_stack.push_back(nextNodeInTrie);
 			}
-			m_board_stack.push_back(index);
-			m_trie_stack.push_back(nextNodeInTrie);
 		}
 	}
 }
